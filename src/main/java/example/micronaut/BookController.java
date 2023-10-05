@@ -1,7 +1,6 @@
 package example.micronaut;
 
 import com.example.openapi.server.api.BooksApi;
-import com.example.openapi.server.model.Book;
 import com.example.openapi.server.model.BookContainer;
 import com.example.openapi.server.model.BooksContainer;
 import io.micronaut.http.annotation.Controller;
@@ -14,7 +13,7 @@ import java.util.List;
 public class BookController implements BooksApi {
 
     @Override
-    public void addBook(Book book) {
+    public void addBook(String book) {
 
     }
 
@@ -24,7 +23,7 @@ public class BookController implements BooksApi {
     }
 
     @Override
-    public void addBooks(List<Book> book) {
+    public void addBooks(List<String> book) {
 
     }
 

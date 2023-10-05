@@ -77,13 +77,9 @@ paths:
 components:
   schemas:
     Book:
-      type: object
-      properties:
-        title:
-          type: string
-          maxLength: 10
-      required:
-        - title
+      type: string
+      maxLength: 10
+      pattern: "[a-zA-Z ]+"
     Books:
       type: array
       items:

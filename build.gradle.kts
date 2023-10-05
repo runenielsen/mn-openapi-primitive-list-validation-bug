@@ -49,13 +49,13 @@ micronaut {
         optimizeNetty.set(true)
     }
     openapi {
-        server(file("src/main/resources/modelwithlist.yml")) {
+        server(file("src/main/resources/modelwithprimitivelist.yml")) {
             apiPackageName = "com.example.openapi.server.api"
             modelPackageName = "com.example.openapi.server.model"
             useReactive = false
         }
 
-        client(file("src/main/resources/modelwithlist.yml")) {
+        client(file("src/main/resources/modelwithprimitivelist.yml")) {
             apiPackageName = "com.example.openapi.client.api"
             modelPackageName = "com.example.openapi.client.model"
             useReactive = false
@@ -91,12 +91,12 @@ tasks {
             val updatedContent = content.replaceFirst(
                 """        @NotNull
         @Body
-        List<Book> book
+        List<String> requestBody
 """,
                 """        @NotNull
         @Valid
         @Body
-        List<Book> book
+        List<String> requestBody
 """
             )
             file.writeText(updatedContent)
