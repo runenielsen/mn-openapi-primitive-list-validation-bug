@@ -2,6 +2,8 @@ package example.micronaut;
 
 import com.example.openapi.server.model.BookContainer;
 import com.example.openapi.server.model.BooksContainer;
+import com.example.openapi.server.model.CountContainer;
+import com.example.openapi.server.model.CountsContainer;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.client.HttpClient;
 import io.micronaut.http.client.annotation.Client;
@@ -87,5 +89,39 @@ class BookControllerTest {
 
         System.out.println(response);
         Assertions.assertTrue(response.contains("booksContainer.books[0]: size must be between 0 and 10"));
+    }
+
+    @Test
+    void testAddCountInContainer() {
+        var countContainer = new CountContainer(17);
+
+        var request = HttpRequest.POST("/add-count-in-container", countContainer);
+
+        String response;
+        try {
+            response = httpClient.toBlocking().exchange(request, String.class).body();
+        } catch (HttpClientResponseException e) {
+            response = e.getResponse().body().toString();
+        }
+
+        System.out.println(response);
+        Assertions.assertTrue(response.contains("countContainer.count: must be less than or equal to 10"));
+    }
+
+    @Test
+    void testAddCountsInContainer() {
+        var countsContainer = new CountsContainer(List.of(17));
+
+        var request = HttpRequest.POST("/add-counts-in-container", countsContainer);
+
+        String response;
+        try {
+            response = httpClient.toBlocking().exchange(request, String.class).body();
+        } catch (HttpClientResponseException e) {
+            response = e.getResponse().body().toString();
+        }
+
+        System.out.println(response);
+        Assertions.assertTrue(response.contains("countsContainer.counts[0]: must be less than or equal to 10"));
     }
 }

@@ -74,6 +74,38 @@ paths:
           description: Success
         "400":
           description: Bad Request
+  /add-count-in-container:
+    post:
+      tags: [books]
+      summary: Add a new count
+      operationId: addCountInContainer
+      requestBody:
+        required: true
+        content:
+          "application/json":
+            schema:
+              $ref: "#/components/schemas/CountContainer"
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad Request
+  /add-counts-in-container:
+    post:
+      tags: [books]
+      summary: Add new counts
+      operationId: addCountsInContainer
+      requestBody:
+        required: true
+        content:
+          "application/json":
+            schema:
+              $ref: "#/components/schemas/CountsContainer"
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad Request
 components:
   schemas:
     Book:
@@ -98,3 +130,24 @@ components:
           $ref: "#/components/schemas/Books"
       required:
         - books
+    Count:
+      type: integer
+      maximum: 10
+    Counts:
+      type: array
+      items:
+        $ref: "#/components/schemas/Count"
+    CountContainer:
+      type: object
+      properties:
+        count:
+          $ref: "#/components/schemas/Count"
+      required:
+        - count
+    CountsContainer:
+      type: object
+      properties:
+        counts:
+          $ref: "#/components/schemas/Counts"
+      required:
+        - counts

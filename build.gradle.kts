@@ -67,14 +67,26 @@ micronaut {
 tasks {
     named("generateServerOpenApiModels") {
         doLast {
-            val file =
+            var file =
                 layout.buildDirectory.file("generated/openapi/generateServerOpenApiModels/src/main/java/com/example/openapi/server/model/BooksContainer.java")
                     .get().asFile
-            val content = file.readText()
-            val updatedContent = content.replaceFirst(
+            var content = file.readText()
+            var updatedContent = content.replaceFirst(
                 """    private List<String> books;
 """,
                 """    private List<@Pattern(regexp = "[a-zA-Z ]+") @Size(max = 10) String> books;
+"""
+            )
+            file.writeText(updatedContent)
+
+            file =
+                layout.buildDirectory.file("generated/openapi/generateServerOpenApiModels/src/main/java/com/example/openapi/server/model/CountsContainer.java")
+                    .get().asFile
+            content = file.readText()
+            updatedContent = content.replaceFirst(
+                """    private List<Integer> counts;
+""",
+                """    private List<@Max(10) Integer> counts;
 """
             )
             file.writeText(updatedContent)

@@ -3,6 +3,8 @@ package example.micronaut;
 import com.example.openapi.server.api.BooksApi;
 import com.example.openapi.server.model.BookContainer;
 import com.example.openapi.server.model.BooksContainer;
+import com.example.openapi.server.model.CountContainer;
+import com.example.openapi.server.model.CountsContainer;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.validation.Validated;
@@ -40,6 +42,16 @@ public class BookController implements BooksApi {
 
     @Override
     public void addBooksInContainer(BooksContainer booksContainer) {
+
+    }
+
+    @Override
+    public void addCountInContainer(CountContainer countContainer) {
+
+    }
+
+    @Override
+    public void addCountsInContainer(CountsContainer countsContainer) {
 
     }
 }
