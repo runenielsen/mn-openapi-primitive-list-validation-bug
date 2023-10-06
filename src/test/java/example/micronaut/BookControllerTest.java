@@ -57,9 +57,9 @@ class BookControllerTest {
 
     @Test
     void testAddBooks() {
-        var book = List.of("This title is toooooooo long");
+        var books = List.of("This title is toooooooo long");
 
-        var request = HttpRequest.POST("/add-books", book);
+        var request = HttpRequest.POST("/add-books", books);
 
         String response;
         try {
@@ -69,14 +69,14 @@ class BookControllerTest {
         }
 
         System.out.println(response);
-        Assertions.assertTrue(response.contains("book[0]: size must be between 0 and 10"));
+        Assertions.assertTrue(response.contains("books[0]: size must be between 0 and 10"));
     }
 
     @Test
     void testAddBooksInContainer() {
-        var bookContainer = new BooksContainer(List.of("This title is toooooooo long"));
+        var booksContainer = new BooksContainer(List.of("This title is toooooooo long"));
 
-        var request = HttpRequest.POST("/add-books-in-container", bookContainer);
+        var request = HttpRequest.POST("/add-books-in-container", booksContainer);
 
         String response;
         try {

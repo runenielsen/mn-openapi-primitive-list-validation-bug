@@ -72,12 +72,9 @@ tasks {
                     .get().asFile
             val content = file.readText()
             val updatedContent = content.replaceFirst(
-                """    @NotNull
-    @Schema(name = "books", requiredMode = Schema.RequiredMode.REQUIRED)
+                """    private List<String> books;
 """,
-                """    @NotNull
-    @Valid
-    @Schema(name = "books", requiredMode = Schema.RequiredMode.REQUIRED)
+                """    private List<@Pattern(regexp = "[a-zA-Z ]+") @Size(max = 10) String> books;
 """
             )
             file.writeText(updatedContent)
@@ -89,15 +86,8 @@ tasks {
             val file = layout.buildDirectory.file("generated/openapi/generateServerOpenApiApis/src/main/java/com/example/openapi/server/api/BooksApi.java").get().asFile
             val content = file.readText()
             val updatedContent = content.replaceFirst(
-                """        @NotNull
-        @Body
-        List<String> requestBody
-""",
-                """        @NotNull
-        @Valid
-        @Body
-        List<String> requestBody
-"""
+                "List<String> requestBody",
+                "List<@Pattern(regexp = \"[a-zA-Z ]+\") @Size(max = 10) String> requestBody"
             )
             file.writeText(updatedContent)
         }
