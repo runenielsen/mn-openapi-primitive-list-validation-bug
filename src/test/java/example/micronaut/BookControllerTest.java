@@ -1,7 +1,7 @@
 package example.micronaut;
 
-import example.micronaut.model.BookContainer;
-import example.micronaut.model.BooksContainer;
+import com.example.openapi.server.model.BookContainer;
+import com.example.openapi.server.model.BooksContainer;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.client.HttpClient;
 import io.micronaut.http.client.annotation.Client;
